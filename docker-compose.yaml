@@ -1,0 +1,13 @@
+services:
+  patient-service:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+  patient-client:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
