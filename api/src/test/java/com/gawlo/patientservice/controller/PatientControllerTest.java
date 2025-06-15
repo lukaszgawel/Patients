@@ -3,6 +3,7 @@ package com.gawlo.patientservice.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -15,6 +16,7 @@ import com.gawlo.patientservice.dto.PatientResponseDto;
 import com.gawlo.patientservice.service.PatientService;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,14 @@ class PatientControllerTest {
         .andExpect(jsonPath("$.name").value(patient.getName()));
 
     Mockito.verify(service, Mockito.times(1)).createPatient(any());
+  }
+
+  @Test
+  public void whenDeletePatient_thenShouldReturnOk() throws Exception {
+    this.mockMvc.perform(delete(URL + "/" + UUID.randomUUID()))
+        .andExpect(status().isOk());
+
+    Mockito.verify(service, Mockito.times(1)).deletePatient(any());
   }
 
   private PatientResponseDto createPatientResponseDto() {

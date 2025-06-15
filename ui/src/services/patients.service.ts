@@ -8,11 +8,15 @@ export const getAllPatients = async () => {
 
 export const addPatient = async (formData: AddPatientDto) => {
   const reqData = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
-  }
+  };
   return await fetch(`${BASE_URL}/api/v1/patients`, reqData);
+};
+
+export const deletePatient = async (id: string) => {
+  return await fetch(`${BASE_URL}/api/v1/patients/${id}`, { method: "DELETE" });
 };

@@ -54,7 +54,13 @@ function AddPatient() {
             />
           </div>
 
-          <div className="mt-8 pt-6 border-t border-gray-200 flex justify-end">
+          <div className="mt-8 pt-6 border-t border-gray-200 flex justify-between">
+            <button
+              className="px-8 py-3 bg-red-500 rounded-xl text-white font-medium hover:bg-red-700 shadow-md"
+              onClick={() => navigate("/")}
+            >
+              Cancel
+            </button>
             <button
               type="submit"
               className="px-8 py-3 bg-blue-500 rounded-xl text-white font-medium hover:bg-blue-700 shadow-md disabled:bg-blue-200"

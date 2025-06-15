@@ -6,6 +6,7 @@ import com.gawlo.patientservice.mapper.PatientMapper;
 import com.gawlo.patientservice.model.Patient;
 import com.gawlo.patientservice.repository.PatientRepository;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +28,10 @@ public class PatientService {
     Patient newPatient = patientRepository.save(PatientMapper.toModel(patientRequestDTO));
 
     return PatientMapper.toDTO(newPatient);
+  }
+
+  public void deletePatient(UUID id) {
+    patientRepository.deleteById(id);
   }
 
 }
